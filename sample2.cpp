@@ -13,7 +13,7 @@ public:
 
 class OAuth2Interceptor {
 public:
-    OAuth2Interceptor(const std::string& authUrl) {
+    explicit OAuth2Interceptor(const std::string& authUrl) {
         // Mock implementation
         std::cout << "OAuth2Interceptor created with URL: " << authUrl << std::endl;
     }
@@ -28,22 +28,12 @@ public:
 
 class AMSNDSLiveDownloader {
 public:
-    AMSNDSLiveDownloader(const std::shared_ptr<ServerConfig>& serverConfig)
+    explicit AMSNDSLiveDownloader(const std::shared_ptr<ServerConfig>& serverConfig)
         : m_serverConfig(serverConfig) {}
 
     std::unique_ptr<HttpClientConfig> getHttpClientConfig() {
         std::unique_ptr<HttpClientConfig> clientConfig = std::make_unique<HttpClientConfig>();
-        if (clientConfig == nullptr) {
-            // Handle error: clientConfig creation failed
-            throw std::runtime_error("Failed to create HttpClientConfig");
-        }
-        
         std::unique_ptr<OAuth2Interceptor> oAuth = std::make_unique<OAuth2Interceptor>(m_serverConfig->getAuthUrl());
-        if (oAuth == nullptr) {
-            // Handle error: oAuth creation failed
-            throw std::runtime_error("Failed to create OAuth2Interceptor");
-        }
-
         clientConfig->addInterceptor(std::move(oAuth));
         return clientConfig;
     }
