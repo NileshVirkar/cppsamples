@@ -33,13 +33,13 @@ public:
 
     std::unique_ptr<HttpClientConfig> getHttpClientConfig() {
         std::unique_ptr<HttpClientConfig> clientConfig = std::make_unique<HttpClientConfig>();
-        if (!clientConfig) {
+        if (clientConfig == nullptr) {
             // Handle error: clientConfig creation failed
             throw std::runtime_error("Failed to create HttpClientConfig");
         }
-
+        
         std::unique_ptr<OAuth2Interceptor> oAuth = std::make_unique<OAuth2Interceptor>(m_serverConfig->getAuthUrl());
-        if (!oAuth) {
+        if (oAuth == nullptr) {
             // Handle error: oAuth creation failed
             throw std::runtime_error("Failed to create OAuth2Interceptor");
         }
