@@ -50,4 +50,12 @@ int main() {
     std::shared_ptr<ServerConfig> serverConfig = std::make_shared<ServerConfig>();
     AMSNDSLiveDownloader downloader(serverConfig);
 
-    std::unique_ptr<HttpClientConfig> config = downloader.getHttpClientConfig(
+    std::unique_ptr<HttpClientConfig> config = downloader.getHttpClientConfig();
+    if (config) {
+        std::cout << "HttpClientConfig obtained successfully." << std::endl;
+    } else {
+        std::cout << "Failed to obtain HttpClientConfig." << std::endl;
+    }
+
+    return 0;
+}
