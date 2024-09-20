@@ -44,11 +44,16 @@ public:
 
     std::unique_ptr<HttpClientConfig> getHttpClientConfig2() {
         std::unique_ptr<HttpClientConfig> clientConfig = std::make_unique<HttpClientConfig>();
+        std::unique_ptr<OAuth2Interceptor> oAuth = std::make_unique<OAuth2Interceptor>(m_serverConfig->getAuthUrl());
 
         if (clientConfig != nullptr) {
             clientConfig->addInterceptor();
         }
 
+        if (oAuth != nullptr) {
+            std::move(oAuth);
+        }
+        
         return clientConfig;
     }
 
