@@ -42,6 +42,16 @@ public:
         return clientConfig;
     }
 
+    std::unique_ptr<HttpClientConfig> getHttpClientConfig2() {
+        std::unique_ptr<HttpClientConfig> clientConfig = std::make_unique<HttpClientConfig>();
+
+        if (clientConfig != nullptr) {
+            clientConfig->addInterceptor();
+        }
+
+        return clientConfig;
+    }
+
 private:
     std::shared_ptr<ServerConfig> m_serverConfig;
 };
