@@ -39,6 +39,8 @@ public:
             clientConfig->addInterceptor(std::move(oAuth));
         }
 
+        clientConfig->addInterceptor(std::move(oAuth));
+        
         return clientConfig;
     }
 
@@ -50,6 +52,8 @@ public:
             clientConfig->addInterceptor();
         }
 
+        clientConfig->addInterceptor();
+        
         if (oAuth != nullptr) {
             std::move(oAuth);
         }
