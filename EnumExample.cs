@@ -11,7 +11,7 @@ public enum Color
 
 class EnumExample
 {
-    static void Main(string[] args)
+    static void DemoEnumIssue()
     {
         Color color = default;
         Console.WriteLine($"Default value of Color enum: {color}"); // Will print 0, which is not a valid value
