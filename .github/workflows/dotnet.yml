@@ -24,12 +24,12 @@ jobs:
         
     - name: Restore dependencies
       # Specify the solution file to restore packages for
-      run: dotnet restore HelloWorld.sln
+      run: dotnet restore cppsamples.sln
       
     - name: Build
       # Specify the solution file to build
-      run: dotnet build HelloWorld.sln --no-restore
+      run: dotnet build cppsamples.sln --no-restore
       
     - name: Test
       # Specify the solution file to run tests for
-      run: dotnet test HelloWorld.sln --no-build --verbosity normal
+      run: dotnet test cppsamples.sln --no-build --verbosity normal
