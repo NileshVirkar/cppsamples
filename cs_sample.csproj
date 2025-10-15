@@ -5,8 +5,4 @@
     <LangVersion>latest</LangVersion>
     <StartupObject>Program</StartupObject>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Compile Include="EnumExample.cs" />
-    </ItemGroup>
 </Project>
