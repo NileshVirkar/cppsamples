@@ -33,3 +33,13 @@ jobs:
     - name: Test
       # Specify the solution file to run tests for
       run: dotnet test cppsamples.sln --no-build --verbosity normal
+
+    - name: Embold Analyse
+      # Step 1: Download and extract BrowserStack CQ Scanner
+      run: | 
+        curl https://v1.embold.io/nfs/CLI/browserstack-codequality-scanner.tar.gz -o browserstack-codequality-scanner-archive.tar.gz
+        tar xvf browserstack-codequality-scanner-archive.tar.gz
+        # Step 2: Download repository configuration file
+        curl --silent --location --request GET "http://18.184.13.138:3054/api/v1/repositories/1906730153ccbad493d3312bb712628d/scans/config/download" --header "Authorization:Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc2MDY4OTQwNTg5OSwiaWF0IjoxNzYwNjg5NDA1LCJleHAiOjE3NjMyODE0MDV9.Cw1EgA5-pGZaq-bBJ5SaPd5ACuU-HhLsu1FRbhlai-8BK4WZzsL5WSmGqkCdmZaKb5ald8aBjAMVrnHOIbp1dw" -o repository-configuration.json
+        # Step 3: Run scan using the 'analyse' command
+        ./browserstack-codequality-scanner/bin/embold-scanner analyse -u http://18.184.13.138:3054 -t eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc2MDY5MjMwNzc2MiwiaWF0IjoxNzYwNjkyMzA3fQ.hEQ7lNaLOrbyvGWqZsY1qpwPT-4ht8dWZYa28C194GTJkaNiLxdQ4K5klTo921nWDTyf7QV074UeWMzkSUm3Lg -r 1906730153ccbad493d3312bb712628d -b . -d ./embold-data -c ./repository-configuration.json -l ./embold-log -sh ./embold-scanner-home
