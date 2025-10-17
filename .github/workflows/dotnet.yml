@@ -41,7 +41,7 @@ jobs:
         tar xvf browserstack-codequality-scanner-archive.tar.gz
         echo "Download and extract BrowserStack CQ Scanner done"
         # Step 2: Download repository configuration file
-        curl --silent --location --request GET "http://18.184.13.138:3054/api/v1/repositories/1906730153ccbad493d3312bb712628d/scans/config/download" --header $(EMBOLD_TOKEN) -o repository-configuration.json
+        curl --silent --location --request GET "http://18.184.13.138:3054/api/v1/repositories/1906730153ccbad493d3312bb712628d/scans/config/download" --header  -o repository-configuration.json
         echo "Download repository configuration file done"
         # Step 3: Run scan using the 'analyse' command
         ./browserstack-codequality-scanner/bin/embold-scanner analyse -u http://18.184.13.138:3054 -t $(EMBOLD_TOKEN) -r 1906730153ccbad493d3312bb712628d -b . -d ./embold-data -c ./repository-configuration.json -l ./embold-log -sh ./embold-scanner-home -v
